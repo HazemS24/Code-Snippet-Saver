@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Code Snippet Saver",
+    "version": "1.0",
+    "description": "Save and organize code snippets.",
+    "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
+    "host_permissions": ["http://*/*", "https://*/*"],
+    "icons": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "Code Snippet Saver",
+      "default_icon": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+      }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+  }
