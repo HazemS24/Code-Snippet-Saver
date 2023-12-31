@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             codeElement.classList.add('mr-8', 'whitespace-pre-wrap');
 
             const language = hljs.highlightAuto(snippet).language;
-            if (language == "php-template" || !language) {
+            if (language == "php-template" || language == "css" || !language) {
                     codeElement.classList.add(`language-html`);
             } else if (language) {
                     codeElement.classList.add(`language-${language}`);
@@ -40,9 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
             snippetContent.appendChild(codeElement);
             
             const copyButton = document.createElement('button');
-            copyButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-10', 'bg-blue-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-blue-700', 'duration-200');
+            copyButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-11', 'bg-blue-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-blue-700', 'duration-200', 'z-30');
             copyButton.addEventListener('click', function () {
                 copyToClipboard(snippet);
+                showCopiedMessage(listItem);
             });
 
             const clipboardImg = document.createElement('img');
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             const removeButton = document.createElement('button');
-            removeButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-1', 'bg-red-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-red-700', 'duration-200');
+            removeButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-2', 'bg-red-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-red-700', 'duration-200', 'z-30');
             removeButton.addEventListener('click', function () {
                 removeSnippet(index);
             });
@@ -70,6 +71,18 @@ document.addEventListener('DOMContentLoaded', function () {
             snippetList.appendChild(listItem);
         });
         Prism.highlightAll();
+    }
+
+    function showCopiedMessage(snippetElement) {
+        const message = document.createElement('div');
+        message.textContent = 'Copied to clipboard!';
+        message.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'items-center', 'justify-center', 'bg-black', 'flex', 'opacity-75', 'duration-300', 'text-white', 'text-xl', 'z-20');
+        snippetElement.appendChild(message);
+      
+        // Hide the message after 2 seconds
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 1200);
     }
 
     // Function to save a new snippet to Chrome storage
