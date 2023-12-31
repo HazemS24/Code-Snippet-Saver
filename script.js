@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             snippetContent.appendChild(codeElement);
             
             const copyButton = document.createElement('button');
-            copyButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-10', 'bg-blue-500', 'w-8', 'h-6', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center');
+            copyButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-10', 'bg-blue-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-blue-700', 'duration-200');
             copyButton.addEventListener('click', function () {
                 copyToClipboard(snippet);
             });
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             const removeButton = document.createElement('button');
-            removeButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-2', 'bg-red-500', 'w-8', 'h-6', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center');
+            removeButton.classList.add('absolute', 'p-1.5', 'rounded-full', 'top-3', 'right-1', 'bg-red-500', 'w-8', 'h-7', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center', 'hover:bg-red-700', 'duration-200');
             removeButton.addEventListener('click', function () {
                 removeSnippet(index);
             });
