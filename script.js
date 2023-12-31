@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
             displaySnippets(snippets);
         });
     }
+    
+    // Load and display saved snippets when the popup is opened
+    getSavedSnippets();
 
     // Function to copy the code to the clipboard
     function copyToClipboard(text) {
@@ -21,11 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         snippets.forEach(function (snippet, index) {
             const listItem = document.createElement('div');
-            listItem.classList.add('pl-1', 'border', 'm-2', 'ml-0', 'relative', 'max-h-64', 'overflow-y-auto');
+            listItem.classList.add('pl-1', 'border', 'w-full', 'mt-2', 'relative', 'max-h-64', 'overflow-y-auto');
 
             const snippetContent = document.createElement('pre');
             const codeElement = document.createElement('code');
-            console.log(snippet)
             codeElement.textContent = snippet;
             codeElement.classList.add('mr-8', 'whitespace-pre-wrap');
 
@@ -38,18 +40,29 @@ document.addEventListener('DOMContentLoaded', function () {
             snippetContent.appendChild(codeElement);
             
             const copyButton = document.createElement('button');
-            copyButton.innerHTML = 'Copy Code';
-            copyButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-16', 'bg-blue-500', 'text-white', 'border-none', 'cursor-pointer');
+            copyButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-10', 'bg-blue-500', 'w-8', 'h-6', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center');
             copyButton.addEventListener('click', function () {
                 copyToClipboard(snippet);
             });
 
+            const clipboardImg = document.createElement('img');
+            clipboardImg.src = 'images/clipboard.png'
+            clipboardImg.alt = 'Clipboard Icon';
+            clipboardImg.classList.add('max-h-full')
+            copyButton.appendChild(clipboardImg);
+
+
             const removeButton = document.createElement('button');
-            removeButton.innerHTML = '&#10006;';
-            removeButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-2', 'bg-red-500', 'white', 'border-none', 'cursor-pointer');
+            removeButton.classList.add('absolute', 'p-1', 'rounded-full', 'top-2', 'right-2', 'bg-red-500', 'w-8', 'h-6', 'border-none', 'cursor-pointer', 'flex', 'items-center', 'justify-center');
             removeButton.addEventListener('click', function () {
                 removeSnippet(index);
             });
+
+            const crossImg = document.createElement('img');
+            crossImg.src = 'images/cross.png'
+            crossImg.alt = 'Cross Icon';
+            crossImg.classList.add('max-h-full')
+            removeButton.appendChild(crossImg);
 
             listItem.appendChild(removeButton);
             listItem.appendChild(copyButton);
@@ -75,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function removeSnippet(index) {
         chrome.storage.sync.get(['snippets'], function (result) {
             const snippets = result.snippets || [];
-
             const originalIndex = snippets.length - 1 - index;
 
             if (originalIndex >= 0 && originalIndex < snippets.length) {
@@ -96,8 +108,4 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('snippetInput').value = '';
         }
     });
-    document.getElementById('saveSnippet').classList.add('w-full', 'max-w-full');
-
-    // Load and display saved snippets when the popup is opened
-    getSavedSnippets();
 });
