@@ -4,7 +4,6 @@
     "version": "1.0",
     "description": "Save and organize code snippets.",
     "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
-    "host_permissions": ["http://*/*", "https://*/*"],
     "icons": {
         "16": "images/icon.png",
         "48": "images/icon.png",
