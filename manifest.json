@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Code Snippet Saver",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Save and organize code snippets.",
     "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
     "icons": {
