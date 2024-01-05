@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Code Snippet Saver",
     "version": "2.1",
-    "description": "This extension provides users with the ability to reuse code with built-in storage instead of having to write frequently used code from scratch.",
+    "description": "Provides users with the ability to reuse code with built-in storage instead of having to write frequently used code from scratch.",
     "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
     "icons": {
         "16": "images/icon.png",
